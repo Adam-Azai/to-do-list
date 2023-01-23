@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import LogInForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+
 
 def show_login(request):
     if request.method == "POST":
@@ -17,3 +18,10 @@ def show_login(request):
         login_form = LogInForm()
     context = {"login_form": login_form}
     return render(request, "accounts/login.html", context)
+# Will show the form for pre-registered users to login
+
+
+def logout_user(request):
+    logout(request)
+    return redirect("login")
+# Logs out the current user

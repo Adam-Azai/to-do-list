@@ -10,3 +10,4 @@ class LogInForm(ModelForm):
             "password",
         ]
         widgets = {"password": PasswordInput}
+# Display Login Form with username and password input boxes
