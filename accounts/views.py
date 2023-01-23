@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .forms import LogInForm
 from django.contrib.auth import authenticate, login
 
-
 def show_login(request):
     if request.method == "POST":
         login_form = LogInForm(request.POST)
