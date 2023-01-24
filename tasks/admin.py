@@ -3,7 +3,7 @@ from .models import Task
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = {"name"}
+    list_display = ["name"]
 
 
-admin.site.register(Task)
+admin.site.register(Task, TaskAdmin)

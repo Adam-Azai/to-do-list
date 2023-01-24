@@ -11,4 +11,4 @@ class Project(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name} {self.description} {self.owner}"
+        return f"{self.name}"

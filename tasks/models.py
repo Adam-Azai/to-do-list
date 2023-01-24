@@ -14,3 +14,6 @@ class Task(models.Model):
     assignee = models.ForeignKey(
         User, related_name=("tasks"), on_delete=models.CASCADE
     )
+
+    def __str__(self):
+        return f"{self.name} {self.start_date} {self.due_date} {self.project} {self.assignee}"

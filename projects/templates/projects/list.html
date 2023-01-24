@@ -10,6 +10,7 @@
 <main>
     <div>
         <h1>My Projects</h1>
+        <p><a href="{% url "create_project" %}">Create a new project</a></p>
         {% if list_projects|length == 0 %}
             <p>You are not assigned to any projects</p>
         {% endif %}
@@ -21,11 +22,12 @@
             <tbody>
                 {% for item in list_projects %}
                 <tr>
-                    <td>{{ item.name }}</td>
-                    <td></td>
-                {% endfor %}
+                    <td><a href="{% url "show_project" item.id %}">{{ item.name }}</a></td>
+                    <td>{{ item.tasks.all|length }}</td>
                 </tr>
+                {% endfor %}
             </tbody>
+
         </table>
 
     </div>

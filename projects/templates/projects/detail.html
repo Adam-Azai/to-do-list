@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+</head>
+<body>
+<main>
+    <div>
+        <h1>{{ project.name }} </h1>
+        <p>{{ project.description }}</p>
+        <h2>Tasks</h2>
+        <p><a href="{% url "create_task" %}">Create a new task</a></p>
+        {% if project.tasks.all|length != 0%}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Assignee</th>
+                <th>Start date</th>
+                <th>Due date</th>
+                <th>Is completed</th>
+            </tr>
+            <tbody>
+            {% for item in project.tasks.all%}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.assignee }} </td>
+                    <td>{{ item.start_date }}</td>
+                    <td>{{ item.due_date }}</td>
+                    <td>{{ item.is_compelted|yesno }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        {% if project.tasks.all|length == 0 %}
+        <p>This project has no tasks</p>
+        {% endif %}
+    </div>
+</main>
+</body>
+</html>
