@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+</head>
+<body>
+<main>
+    <div>
+        <h1>My Tasks</h1>
+        {% if view_task.all|length != 0%}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Start date</th>
+                <th>Due date</th>
+                <th>Is completed</th>
+            </tr>
+            <tbody>
+            {% for item in view_task %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.start_date }}</td>
+                    <td>{{ item.due_date }}</td>
+                    <td>{{ item.is_compelted|yesno }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        {% if view_task.all|length == 0 %}
+        <p>You have no tasks</p>
+        {% endif %}
+    </div>
+</main>
+</body>
+</html>
