@@ -1,29 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks</title>
-</head>
+{% extends "base.html" %}
+<title>{% block title %} Tasks {% endblock %}</title>
 <body>
-    <header>
-        <nav>
-                <ul>
-                    {% if user.is_authenticated %}
-                    <li><a href="{% url "show_my_tasks" %}">My tasks</a></li>
-                    <li><a href="{% url "list_projects" %}">My projects</a></li>
-                    <li><a href="{% url "logout" %}">Logout</a></li>
-                    {% else %}
-                    <li><a href="{% url "login" %}">LogIn</a></li>
-                    <li><a href="{% url "signup" %}">Signup</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-    </header>
 <main>
-    <div>
+    {% block content %}
+    <div class="my-tasks-list">
         <h1>My Tasks</h1>
+        <form method="GET">
+            <input type="text" name="search-area">
+            <input type="submit" value = "Search">
+        </form>
         {% if view_task.all|length != 0%}
         <table>
             <tr>
@@ -48,6 +33,15 @@
         <p>You have no tasks</p>
         {% endif %}
     </div>
+
+
+    {% autoescape off %}
+    <div class = "gantt">
+    {{ plot_div }}
+    </div>
+    {% endautoescape %}
+
+
+    {% endblock %}
 </main>
 </body>
-</html>

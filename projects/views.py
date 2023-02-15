@@ -36,3 +36,28 @@ def create_project(request):
         form = CreateProjectForm()
     context = {"form": form}
     return render(request, "projects/create.html", context)
+
+
+def view_contactus(request):
+    return render(request, "projects/contact.html")
+
+# @login_required
+# def gantt_chart_tasks(request):
+#     qs = Task.objects.all()
+#     task_data = [
+#         {
+#             "Task": x.name,
+#             "Start": x.start_date,
+#             "End": x.due_date,
+#             "Responsible": x.assignee.username
+#         } for x in qs
+#     ]
+#     df = pd.DataFrame(task_data)
+
+#     fig = px.timeline(
+#         df, x_start="Start", x_end="End", y="Task", color="Responsible"
+#     )
+#     fig.update_yaxes(autorange="reversed")
+#     gantt_plot = plot(fig, output_type="div")
+#     context = {'plot_div': gantt_plot}
+#     return render(request, "projects/chart.html", context)

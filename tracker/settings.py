@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "chart.apps.ChartConfig",
     "tasks.apps.TasksConfig",
     "projects.apps.ProjectsConfig",
     "accounts.apps.AccountsConfig",

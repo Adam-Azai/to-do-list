@@ -1,32 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-</head>
-<body>
-    <header>
-        <nav>
-                <ul>
-                    {% if user.is_authenticated %}
-                    <li><a href="{% url "show_my_tasks" %}">My tasks</a></li>
-                    <li><a href="{% url "list_projects" %}">My projects</a></li>
-                    <li><a href="{% url "logout" %}">Logout</a></li>
-                    {% else %}
-                    <li><a href="{% url "login" %}">LogIn</a></li>
-                    <li><a href="{% url "signup" %}">Signup</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-    </header>
+{% extends "base.html" %}
+    <title>{% block title %}Projects{% endblock %}</title>
+{% block content%}
 <main>
-    <div>
+    <div class="project-detail">
         <h1>{{ project.name }} </h1>
         <p>{{ project.description }}</p>
         <h2>Tasks</h2>
-        <p><a href="{% url "create_task" %}">Create a new task</a></p>
+        <p><a href="{% url "create_task"  %}">Create a new task</a></p>
+        <p class = "speech-bubble">
+            Simply click on the name of the task to edit
+             or move between projects!
+        </p>
         {% if project.tasks.all|length != 0%}
         <table>
             <tr>
@@ -39,11 +23,12 @@
             <tbody>
             {% for item in project.tasks.all%}
                 <tr>
-                    <td>{{ item.name }}</td>
+                    <td><a href="{% url "edit_tasks" item.id %}">{{ item.name }}</a></td>
                     <td>{{ item.assignee }} </td>
                     <td>{{ item.start_date }}</td>
                     <td>{{ item.due_date }}</td>
                     <td>{{ item.is_compelted|yesno }}</td>
+
                 </tr>
             {% endfor %}
             </tbody>
@@ -54,5 +39,4 @@
         {% endif %}
     </div>
 </main>
-</body>
-</html>
+{% endblock %}
